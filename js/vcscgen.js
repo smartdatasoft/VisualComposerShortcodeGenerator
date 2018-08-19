@@ -6,7 +6,12 @@ $(document).ready(function(){
     $("#container").on("click",".addnew", function(){
         addElement();
     });
+    $("#container").on("click",".remove", function(){
+        var count =  $("#container .form-inline").length;
+        if(count>1)
+            $(this).parents('.form-inline').remove();
 
+    });
     $("#generate").on("click",function(){
 
         var json = [];
@@ -89,6 +94,9 @@ $(document).ready(function(){
         $(lastItem).find("h4").html("Item "+index);
         $(lastItem).removeClass("last");
         $(lastItem).attr("id","form_"+index);
+        var count =  $("#container .form-inline").length;
+        if(count==1)
+             $(lastItem).find(".remove").remove();
     }
 
     function setElementValues(id,type,heading,param,value,group,admin){
